@@ -55,7 +55,7 @@ public class ArrayList {
 		return this.elementData[index];
 	}
 	
-	public int sizeOf() { // 현재 배열의 값 개수 보내기
+	public int size() { // 현재 배열의 값 개수 보내기
 		return this.size;
 	}
 	
@@ -74,5 +74,34 @@ public class ArrayList {
 	
 //	여기까지가 16강
 	
+	public ListIterator listIterator() {
+		return new ListIterator();
+	}
 	
+	class ListIterator {
+		private int nextIndex = 0;
+		
+		// 증가 t, f
+		public boolean hasNext() {
+			return nextIndex < size();
+		}
+		
+		// 값을 0부터 출력
+		public Object next() {
+//			Object returnData = elementData[nextIndex];
+//			nextIndex++;
+//			return returnData;
+			return elementData[nextIndex++]; // 위의 코드 간략화
+		}
+		
+		// 감소 t, f
+		public boolean hasPrevious() {
+			return nextIndex > 0;
+		}
+		
+		// 값을 맨 뒤부터 출력
+		public Object previous() {
+			return elementData[--nextIndex];
+		}
+	}
 }
