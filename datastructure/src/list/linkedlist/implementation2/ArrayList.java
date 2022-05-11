@@ -72,36 +72,43 @@ public class ArrayList {
 		return result;
 	}
 	
-//	여기까지가 16강
-	
+	// ListIterator 클래스를 메소드를 통해 객체 생성
 	public ListIterator listIterator() {
 		return new ListIterator();
 	}
 	
-	class ListIterator {
+	class ListIterator { // ListIterator 클래스
 		private int nextIndex = 0;
 		
-		// 증가 t, f
-		public boolean hasNext() {
-			return nextIndex < size();
-		}
-		
-		// 값을 0부터 출력
+		// 저장 된 리스트 값 호출
 		public Object next() {
-//			Object returnData = elementData[nextIndex];
-//			nextIndex++;
-//			return returnData;
-			return elementData[nextIndex++]; // 위의 코드 간략화
+			return elementData[nextIndex++];
 		}
 		
-		// 감소 t, f
+		// 저장 된 리스트에서 현재 값이 있는 범위까지만 호출하게 도와줌
+		public boolean hasNext() {
+			return nextIndex < size(); // 현재 값을 갖고 있는 범위 일 경우 t, 아니면 f
+		}
+		
+		// 역순으로 리스트 값 호출
+		public Object Previous() {
+			return elementData[--nextIndex];
+		}
+		
+		// 저장 된 리스트에서 현재 값이 있는 범위까지만 호출하게 도와줌
 		public boolean hasPrevious() {
 			return nextIndex > 0;
 		}
 		
-		// 값을 맨 뒤부터 출력
-		public Object previous() {
-			return elementData[--nextIndex];
+		//원하는 인덱스 위치에 값 추가
+		public void add(Object element) { 
+			ArrayList.this.add(nextIndex, element);
+		}
+		
+		//원하는 리스트 값 삭제
+		public void remove() {
+			ArrayList.this.remove(nextIndex);
 		}
 	}
+	
 }
